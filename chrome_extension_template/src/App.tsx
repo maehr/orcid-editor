@@ -3,6 +3,7 @@ import "./App.css";
 import { Work } from "./types/work";
 import { FileImport } from "./components/FileImport";
 import { WorksList } from "./components/WorksList";
+import { Deduplication } from "./components/Deduplication";
 import { getAllWorks, clearWorks } from "./utils/storage";
 import { exportToBibTeX } from "./utils/bibtex";
 import { exportToCSLJSON } from "./utils/csl-json";
@@ -96,10 +97,14 @@ function App() {
         </div>
         
         <div className="panel-section">
+          <h2>Deduplication</h2>
+          <Deduplication works={works} onUpdate={loadWorks} />
+        </div>
+        
+        <div className="panel-section">
           <h2>Actions</h2>
           <p>Select works above to perform batch operations</p>
           <button disabled>Batch Edit (Coming Soon)</button>
-          <button disabled>Deduplicate (Coming Soon)</button>
           <button disabled>Sync to ORCID (Coming Soon)</button>
         </div>
       </div>
