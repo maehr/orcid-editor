@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
-  "version": "1.0.0",
-  "name": "Chrome Extension Template",
+  "version": "0.1.0",
+  "name": "ORCID Works Manager",
+  "description": "Import, batch-edit, deduplicate, merge, and export works on ORCID profiles",
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://www.handmadesoftware.dev/"],
+      "matches": ["https://orcid.org/*"],
       "js": ["content.js"]
     }
   ],
@@ -17,7 +18,7 @@
         "default": "Ctrl+B",
         "mac": "Command+B"
       },
-      "description": "Opens Popup",
+      "description": "Opens Works Manager Popup",
       "global": true
     },
     "open_side_panel": {
@@ -25,15 +26,27 @@
         "default": "Ctrl+Shift+O",
         "mac": "Command+Shift+O"
       },
-      "description": "Open the side panel"
+      "description": "Open Works Manager panel"
     }
   },
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "side_panel": {
     "default_path": "index.html"
   },
-  "permissions": ["scripting", "tabs", "sidePanel", "commands", "contextMenus"],
-  "host_permissions": ["http://*/*", "https://*/*"]
+  "permissions": ["storage", "activeTab", "sidePanel", "commands", "identity"],
+  "host_permissions": ["https://orcid.org/*", "https://pub.orcid.org/*"],
+  "oauth2": {
+    "client_id": "APP-PLACEHOLDER",
+    "scopes": [
+      "openid",
+      "/activities/update"
+    ]
+  }
 }

@@ -5,6 +5,40 @@
   text-align: center;
 }
 
+.works-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.panel-section {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+}
+
+.panel-section h2 {
+  margin-top: 0;
+  color: #a6ce39;
+}
+
+.panel-section button {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #a6ce39;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.panel-section button:hover {
+  background-color: #8fb82d;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

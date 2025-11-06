@@ -1,12 +1,12 @@
 {
-  "name": "chrome_extension_template",
+  "name": "orcid-works-manager",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
-  "description": "A base Chrome Extension project, using React to bring your ideas to reality.",
+  "description": "A Chrome extension that adds a Works Manager to ORCID profiles for importing, batch-editing, deduplicating, and exporting works",
   "author": {
-    "name": "James Privett",
-    "url": "https://www.handmadesoftware.dev/"
+    "name": "Moritz Mähr",
+    "url": "https://github.com/maehr/orcid-editor"
   },
   "scripts": {
     "dev": "vite",

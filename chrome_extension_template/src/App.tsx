@@ -3,19 +3,27 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1>Chrome Extension Template - using Vite, React and TypeScript.</h1>
-      <h2>Contains:</h2>
-      <h2>
-        <ul>
-          <li>Popup</li>
-          <li>Side Panel</li>
-          <li>Hotkey Commands</li>
-          <li>Scripting using background service worker</li>
-          <li>DOM manipulation using content script</li>
-          <li>Page Context Menu</li>
-          <li>Selection Context Menu</li>
-        </ul>
-      </h2>
+      <h1>ORCID Works Manager</h1>
+      <div className="works-manager">
+        <div className="panel-section">
+          <h2>Import</h2>
+          <p>Drop files (BibTeX, CSL-JSON, RIS, CSV) to import works</p>
+          <button>Select Files</button>
+        </div>
+        
+        <div className="panel-section">
+          <h2>Works</h2>
+          <p>No works loaded. Import files or load from ORCID profile.</p>
+          <button>Load from ORCID</button>
+        </div>
+        
+        <div className="panel-section">
+          <h2>Actions</h2>
+          <button>Batch Edit</button>
+          <button>Deduplicate</button>
+          <button>Export</button>
+        </div>
+      </div>
     </>
   );
 }
