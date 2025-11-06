@@ -1,6 +1,8 @@
 export default window.onload = () => {
   // Check if we're on an ORCID profile page
-  if (!window.location.hostname.includes('orcid.org')) {
+  // Use exact match to prevent malicious domains like evil-orcid.org.hacker.com
+  if (window.location.hostname !== 'orcid.org' && 
+      !window.location.hostname.endsWith('.orcid.org')) {
     return;
   }
 
