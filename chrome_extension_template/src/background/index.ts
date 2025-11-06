@@ -1,41 +1,22 @@
-const handleOnPageClick = (info: any, tab: any) => {
-  console.log("Context Info: ", info);
-  console.log("Context Tab: ", tab);
-};
-
-const handleOnSelectionClick = (info: any, tab: any) => {
-  console.log("Context Info: ", info);
-  console.log("Context Tab: ", tab);
-};
+// Handle messages from content script
+chrome.runtime.onMessage.addListener((message, sender) => {
+  if (message.action === "openWorksManager") {
+    // Open the side panel
+    if (sender.tab?.windowId) {
+      chrome.sidePanel.open({ windowId: sender.tab.windowId });
+    }
+  }
+});
 
 export default chrome.runtime.onInstalled.addListener(() => {
-  console.log("Background Service Worker working...");
-
-  chrome.contextMenus.create({
-    id: "some-id-page",
-    title: "New Menu Option - Page",
-    contexts: ["page"],
-  });
-  chrome.contextMenus.create({
-    id: "some-id-selection",
-    title: "New Menu Option - Selection",
-    contexts: ["selection"],
-  });
-
-  chrome.contextMenus.onClicked.addListener((info, tab) => {
-    const { menuItemId } = info;
-
-    if (menuItemId === "some-id-page") handleOnPageClick(info, tab);
-
-    if (menuItemId === "some-id-selection") handleOnSelectionClick(info, tab);
-  });
+  console.log("ORCID Works Manager extension installed");
 });
 
 chrome.commands.onCommand.addListener((command) => {
   if (command === "open_side_panel") {
     chrome.windows.getCurrent((w) => {
       chrome.sidePanel.open({ windowId: w.id! });
-      console.log("Command/Ctrl + O triggered! :)");
+      console.log("Works Manager panel opened");
     });
   }
 });

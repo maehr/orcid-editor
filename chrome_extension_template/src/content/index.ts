@@ -1,11 +1,43 @@
 export default window.onload = () => {
-  const textElement = document.createElement("h1");
+  // Check if we're on an ORCID profile page
+  // Use exact match to prevent malicious domains like evil-orcid.org.hacker.com
+  if (window.location.hostname !== 'orcid.org' && 
+      !window.location.hostname.endsWith('.orcid.org')) {
+    return;
+  }
 
-  textElement.style.color = "red";
-  textElement.style.position = "absolute";
-  textElement.style.top = "0";
-  textElement.style.right = "1";
-  textElement.textContent = "Hello from the Content Script!!!";
+  // Create a Works Manager tab/button
+  const managerButton = document.createElement("button");
+  managerButton.id = "orcid-works-manager-btn";
+  managerButton.textContent = "Works Manager";
+  managerButton.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #a6ce39;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 10000;
+  `;
 
-  document.body.appendChild(textElement);
+  managerButton.addEventListener("mouseenter", () => {
+    managerButton.style.backgroundColor = "#8fb82d";
+  });
+
+  managerButton.addEventListener("mouseleave", () => {
+    managerButton.style.backgroundColor = "#a6ce39";
+  });
+
+  managerButton.addEventListener("click", () => {
+    // Open the side panel or popup
+    chrome.runtime.sendMessage({ action: "openWorksManager" });
+  });
+
+  document.body.appendChild(managerButton);
 };
