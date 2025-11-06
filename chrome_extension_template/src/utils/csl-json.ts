@@ -20,7 +20,7 @@ interface CSLItem {
   URL?: string;
   abstract?: string;
   language?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**
@@ -34,7 +34,7 @@ export function parseCSLJSON(content: string): Work[] {
       return [convertCSLToWork(items as CSLItem)];
     }
     return items.map(item => convertCSLToWork(item));
-  } catch (error) {
+  } catch {
     throw new Error('Invalid CSL-JSON format');
   }
 }

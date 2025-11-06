@@ -176,13 +176,21 @@ function getFirstAuthorSurname(work: Work): string | null {
  * Returns a value between 0 and 1
  */
 function calculateTitleSimilarity(title1: string, title2: string): number {
-  const tokens1 = new Set(title1.split(/\s+/));
-  const tokens2 = new Set(title2.split(/\s+/));
+  const tokens1 = new Set(title1.split(/\s+/).filter(t => t.length > 0));
+  const tokens2 = new Set(title2.split(/\s+/).filter(t => t.length > 0));
+  
+  // Handle empty sets
+  if (tokens1.size === 0 && tokens2.size === 0) {
+    return 1.0; // Both empty, consider them identical
+  }
+  if (tokens1.size === 0 || tokens2.size === 0) {
+    return 0.0; // One empty, one not
+  }
   
   const intersection = new Set([...tokens1].filter(t => tokens2.has(t)));
   const union = new Set([...tokens1, ...tokens2]);
   
-  // Jaccard similarity
+  // Jaccard similarity (union.size cannot be 0 here due to checks above)
   return intersection.size / union.size;
 }
 

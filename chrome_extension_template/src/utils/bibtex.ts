@@ -20,6 +20,10 @@ export function parseBibTeX(content: string): Work[] {
 
 /**
  * Parse BibTeX string into structured entries
+ * 
+ * Note: This is a simplified parser that handles basic BibTeX entries.
+ * It does not handle nested braces or escaped quotes within field values.
+ * For production use with complex BibTeX files, consider using a full parser library.
  */
 function parseBibTeXEntries(content: string): BibTeXEntry[] {
   const entries: BibTeXEntry[] = [];

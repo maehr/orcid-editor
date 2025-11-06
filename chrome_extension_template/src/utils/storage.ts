@@ -23,7 +23,7 @@ export interface LogEntry {
   id: string;
   timestamp: string;
   action: string;
-  details: any;
+  details: unknown;
 }
 
 /**
@@ -207,7 +207,7 @@ export async function getSnapshots(): Promise<Snapshot[]> {
 /**
  * Log an action
  */
-export async function logAction(action: string, details: any): Promise<void> {
+export async function logAction(action: string, details: unknown): Promise<void> {
   const log: LogEntry = {
     id: crypto.randomUUID(),
     timestamp: new Date().toISOString(),
